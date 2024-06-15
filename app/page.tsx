@@ -13,14 +13,15 @@ import {
 import axios from 'axios';
 
 type Props = {
-  searchParams?: {search?: string; status?: string}
+  searchParams?: {search?: string; status?: string; sort?: string;}
 }
 export default async function Component({searchParams,}: Props) {
   // fetch dos dados
   const response = await axios.get("https://apis.codante.io/api/orders-api/orders", {
     params: {
       search: searchParams?.search,
-      status: searchParams?.status
+      status: searchParams?.status,
+      sort: searchParams?.sort,
     }
   });
   const orders = response.data.data;

@@ -36,7 +36,7 @@ export default function FilterDropdown() {
         <Button
           variant="outline"
           size={'default'}
-          className="flex gap-2 text-slate-600 focus-visible:none"
+          className="flex gap-2 text-slate-600 focus-visible:none "
         >
           <Filter className="h-4 w-4" />
           Status
