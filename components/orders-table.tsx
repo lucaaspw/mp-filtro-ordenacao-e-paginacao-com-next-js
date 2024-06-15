@@ -48,7 +48,7 @@ export default function OrdersTable({ orders }: OrderTableProps) {
               </div>
             </TableCell>
             <TableCell>
-              <Badge className={cn(order.status === 'pending' ? 'bg-rose-300 text-xs text-rose-800' : 'bg-green-300 text-xs text-green-600')} variant="outline">
+              <Badge className={cn(order.status === 'pending' ? 'bg-rose-300 text-xs text-rose-800' : 'bg-green-300 text-xs text-green-700')} variant="outline">
                 {order.status === 'pending' ? 'Pendente' : 'Completo'}
               </Badge>
             </TableCell>
