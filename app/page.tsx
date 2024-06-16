@@ -13,18 +13,22 @@ import {
 import axios from 'axios';
 
 type Props = {
-  searchParams?: {search?: string; status?: string; sort?: string;}
+  searchParams?: { search?: string; status?: string; sort?: string; page?: number }
 }
-export default async function Component({searchParams,}: Props) {
+export default async function Component({ searchParams, }: Props) {
   // fetch dos dados
   const response = await axios.get("https://apis.codante.io/api/orders-api/orders", {
     params: {
       search: searchParams?.search,
       status: searchParams?.status,
       sort: searchParams?.sort,
+      page: searchParams?.page
     }
   });
   const orders = response.data.data;
+  let links: { url: string; label: string; active: boolean; id: number }[] = response.data.meta.links;
+  links = links.map((link, index) => ({...link, id: index}))
+  const lastPage = response.data.meta.last_page;
   return (
     <main className="container px-1 py-10 md:p-10">
       <Card>
@@ -41,7 +45,7 @@ export default async function Component({searchParams,}: Props) {
         <CardContent>
           <OrdersTable orders={orders} />
           <div className="mt-8">
-            <Pagination />
+            <Pagination links={links} lastPage={lastPage} />
           </div>
         </CardContent>
       </Card>
